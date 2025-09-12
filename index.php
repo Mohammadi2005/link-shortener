@@ -11,14 +11,15 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;        }
+            margin: 50px;
+        }
 
         #shorten-form {
             max-width: 400px;
             margin: auto;
         }
 
-        #shorten-input {
+        #customLink , #endpointLink {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -41,9 +42,10 @@
 <body>
 <h2>لینک کوتاه کننده</h2>
 
-<form id="shorten-form">
-    <input type="url" style="text-align: right" id="shorten-input" placeholder="لینک خود را وارد کنید" required>
-    <button type="button" id="shorten-button" onclick="shortenLink()">کوتاه کن</button>
+<form id="shorten-form" method="post" action="">
+    <input type="url" name="customLink" style="text-align: right" id="customLink" placeholder="لینک خود را وارد کنید" required>
+    <input type="url" name="endpointLink" value="http://localhost" id="endpointLink" required>
+    <button type="submit" name="shortener" id="shorten-button" onclick="shortenLink()">کوتاه کن</button>
 </form>
 
 <div id="shorten-result"></div>
