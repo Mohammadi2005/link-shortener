@@ -59,7 +59,14 @@
     }
 }
 
-    // get all
+    // delete image
+    if (isset($_GET["deleteId"])) {
+        $queryDelete = "delete from files where ID = ?";
+        $stmtDelete = $pdo->prepare($queryDelete);
+        $stmtDelete->execute([$_GET["deleteId"]]);
+    }
+
+    // get all 
     $query = "select * from files";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
@@ -138,6 +145,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">نام</th>
+                <th scope="col">تصویر</th>
                 <th scope="col">عملیات</th>
             </tr>
             </thead>
@@ -147,8 +155,11 @@
                     <th scope="row"> <?php echo $item["id"] ?> </th>
                     <td> <?php echo $item['name'] ?></td>
                     <td>
+                        <img style="width: 40px; height: 40px " src="./uploads/<?php echo $item['name'] ?>">
+                    </td>
+                    <td>
                         <a class="btn btn-primary" href="./uploads/<?php echo $item['name'] ?>" >نمایش</a>
-                        <a class="btn btn-danger" href="./" >حذف</a>
+                        <a class="btn btn-danger" href="./upload.php?deleteId=<?php echo $item['id'] ?>" >حذف</a>
                     </td>
                 </tr>
             <?php } ?>
