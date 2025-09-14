@@ -14,7 +14,7 @@
             $stmt->execute([$name, $email, $phone, $subject, $message]);
 
             if ($stmt) {
-                echo '<p class="alert alert-success">created already link</p>';
+                echo '<p class="alert alert-success text-center">پیام با موفقیت ارسال شد</p>';
             }
         } catch (Exception $e) {
             echo '<p class="alert alert-danger">Caught exception: ' . $e->getMessage() . '</p>';
@@ -32,10 +32,11 @@
     <style>
         *{
             font-family: DanaFaNum !important;
+            text-align: center;
         }
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
+            /*text-align: center;*/
             margin: 50px;
         }
 
@@ -48,6 +49,7 @@
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
+            text-align: right;
         }
 
         #shorten-button {
@@ -68,13 +70,13 @@
 <h2>تماس با ما</h2>
 
     <form id="shorten" method="post">
-        <input type="text" class="form-control" name="name" style="text-align: right" id="endpointLink" placeholder="نام" required>
-        <input type="email" class="form-control" name="email" style="text-align: right" id="endpointLink" placeholder="ایمیل" required>
-        <input type="phone" class="form-control" name="phone" style="text-align: right" id="endpointLink" placeholder="تلفن تماس">
-        <input type="subject" class="form-control" name="subject" style="text-align: right" id="endpointLink" placeholder="موضوع پیام" required>
-        <textarea name="message" class="form-control" required rows="4"></textarea>
+        <input type="text" class="form-control" name="name" id="endpointLink" placeholder="نام" required>
+        <input type="email" class="form-control" name="email" id="endpointLink" placeholder="ایمیل" required>
+        <input type="phone" class="form-control" name="phone" id="endpointLink" placeholder="تلفن تماس">
+        <input type="subject" class="form-control" name="subject" id="endpointLink" placeholder="موضوع پیام" required>
+        <textarea name="message" class="form-control" id="endpointLink" required rows="4"></textarea>
         <br>
-        <button type="submit" name="send" id="shorten-button" onclick="shortenLink()">ارسال</button>
+        <button type="submit" name="send" id="shorten-button">ارسال</button>
     </form>
 <div id="shorten-result"></div>
 
