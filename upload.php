@@ -3,7 +3,8 @@
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
     $target_dir = "uploads/";
-    $target_file = $target_dir . time() . "-" . basename($_FILES["fileToUpload"]["name"]);
+    $name_saved = time() . "-" . basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . $name_saved;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -42,6 +43,18 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "<p class='alert alert-success'>" . "فایل شما با نام : ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). "با موفقیت اپلود شد." . "</p>";
+
+        $pdo = require_once "config/database.php";
+
+        try {
+            $sql = "insert into files (name, create_time) values (?, ?)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$name_saved, time()]);
+
+        } catch (Exception $e) {
+            echo '<p class="alert alert-danger">Caught exception: ' . $e->getMessage() . '</p>';
+        }
+
     } else {
         echo "<p class='alert alert-danger'>" ."Sorry, there was an error uploading your file." . "</p>";
     }
