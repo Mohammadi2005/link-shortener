@@ -74,6 +74,14 @@ if (isset($_POST['shortener'])) {
             cursor: pointer;
         }
 
+        #shorten-button-shop {
+            background-color: #017ccb;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
         #shorten-result {
             margin-top: 20px;
             font-weight: bold;
@@ -81,33 +89,50 @@ if (isset($_POST['shortener'])) {
     </style>
 </head>
 <body>
-<?php if(!$isCreatedLink){?>
-    <h2>لینک کوتاه کننده</h2>
+    <div class="container w-50">
+        <?php if(!$isCreatedLink){?>
+            <h2>لینک کوتاه کننده</h2>
 
-    <form id="shorten" method="post">
-        <input type="url" class="form-control" name="endpointLink" style="text-align: right" id="endpointLink" placeholder="لینک خود را وارد کنید" required>
-        <input type="url" class="form-control" name="customLink" value="http://localhost/link?url=" id="customLink" required>
-        <select name="type" class="form-select text-start" id="typeLink">
-            <option value="1">مستقیم</option>
-            <option value="0">غیر مستقیم</option>
-        </select>
-        <button type="submit" name="shortener" id="shorten-button" onclick="shortenLink()">کوتاه کن</button>
-    </form>
-<?php } else {?>
-    <div>
-        <img src="https://biz-cdn.varzesh3.com/banners/2025/09/06/B/sq0inioq.gif">
-        <img src="https://biz-cdn.varzesh3.com/banners/2025/08/30/C/old3qoas.gif">
+            <form id="shorten" method="post">
+                <input type="url" class="form-control" name="endpointLink" style="text-align: right" id="endpointLink" placeholder="لینک خود را وارد کنید" required>
+                <input type="url" class="form-control" name="customLink" value="http://localhost/link?url=" id="customLink" required>
+                <select name="type" class="form-select text-start" id="typeLink">
+                    <option value="1">مستقیم</option>
+                    <option value="0">غیر مستقیم</option>
+                </select>
+                <button type="submit" name="shortener" id="shorten-button" onclick="shortenLink()">کوتاه کن</button>
+            </form>
+        <?php } else {?>
+            <div>
+                <img src="https://biz-cdn.varzesh3.com/banners/2025/09/06/B/sq0inioq.gif">
+                <img src="https://biz-cdn.varzesh3.com/banners/2025/08/30/C/old3qoas.gif">
+            </div>
+        <?php } ?>
+        <br>
+        <hr>
+        <div id="shorten-result">
+            <form id="shorten" method="post">
+                <label for="vip7">خرید اشتراک 7 روزه :</label>
+                <input type="radio" id="vip7" name="vip" value="7">
+                <br>
+                <br>
+                <label for="vip30">خرید اشتراک 30 روزه :</label>
+                <input type="radio" id="vip30" name="vip" value="30">
+                <br>
+                <br>
+                <label for="vip1">خرید اشتراک 1 ساله :</label>
+                <input type="radio" id="vip1" name="vip" value="365">
+                <br><br>
+                <button type="submit" name="payment" id="shorten-button-shop">خرید</button>
+            </form>
+        </div>
+        <br>
+        <hr>
+<!--        <br>-->
+        <footer>
+            <a href="contact.php">تماس با ما</a>
+        </footer>
     </div>
-<?php } ?>
-
-<div id="shorten-result"></div>
-
-<br>
-<br>
-<br>
-<footer>
-    <a href="contact.php">تماس با ما</a>
-</footer>
 </body>
 
 
