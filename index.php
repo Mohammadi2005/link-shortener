@@ -1,11 +1,7 @@
 <?php
 
-$isCreatedLink = false;
-//if(isset($_GET['url'])){
-//    $isCreatedLink = true;
-//}
-
-if (isset($_POST['shortener'])) {
+    $isCreatedLink = false;
+    if (isset($_POST['shortener'])) {
     try {
         $pdo = require_once "./config/database.php";
 
@@ -35,6 +31,20 @@ if (isset($_POST['shortener'])) {
         echo "Connection failed: " . $e->getMessage();
     }
 }
+
+    if (isset($_POST['payment'])) {
+        $vip = $_POST['vip'];
+        $price = 0;
+        switch ($vip) {
+            case '7':  $price = 20000;  break;
+            case '30': $price = 60000;  break;
+            case '365': $price = 600000; break;
+        }
+
+        if ($price > 0) {
+
+        }
+    }
 
 ?>
 
@@ -110,17 +120,19 @@ if (isset($_POST['shortener'])) {
         <?php } ?>
         <br>
         <hr>
+
+        <!--   payment gateway   -->
         <div id="shorten-result">
             <form id="shorten" method="post">
-                <label for="vip7">خرید اشتراک 7 روزه :</label>
-                <input type="radio" id="vip7" name="vip" value="7">
+                <label for="vip7">خرید اشتراک 7 روزه (20,000):</label>
+                <input  type="radio" id="vip7" name="vip" value="7">
                 <br>
                 <br>
-                <label for="vip30">خرید اشتراک 30 روزه :</label>
+                <label for="vip30">خرید اشتراک 30 روزه (60,000):</label>
                 <input type="radio" id="vip30" name="vip" value="30">
                 <br>
                 <br>
-                <label for="vip1">خرید اشتراک 1 ساله :</label>
+                <label for="vip1">خرید اشتراک 1 ساله (600,000):</label>
                 <input type="radio" id="vip1" name="vip" value="365">
                 <br><br>
                 <button type="submit" name="payment" id="shorten-button-shop">خرید</button>
