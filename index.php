@@ -47,7 +47,7 @@
             $data = [
                 "merchant"    => "zibal",
                 "amount"      => $price,
-                "callbackUrl" => "https://yourwebsite.com/payment/callback.php"
+                "callbackUrl" => "http://localhost/projects/link-shortener/verifyPayment.php"
             ];
 
             curl_setopt_array($curl, [
@@ -173,14 +173,12 @@
         </div>
         <br>
         <hr>
-<!--        <br>-->
+
         <footer>
             <a href="contact.php">تماس با ما</a>
         </footer>
     </div>
+
 </body>
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
 </html>
