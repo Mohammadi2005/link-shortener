@@ -42,7 +42,40 @@
         }
 
         if ($price > 0) {
+            $curl = curl_init();
 
+            $data = [
+                "merchant"    => "zibal",
+                "amount"      => $price,
+                "callbackUrl" => "https://yourwebsite.com/payment/callback.php"
+            ];
+
+            curl_setopt_array($curl, [
+                CURLOPT_URL            => 'https://gateway.zibal.ir/v1/request',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_TIMEOUT        => 10,
+                CURLOPT_POST           => true,
+                CURLOPT_POSTFIELDS     => json_encode($data),
+                CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_SSL_VERIFYHOST => false,
+            ]);
+
+            $response = curl_exec($curl);
+
+            if (curl_errno($curl)) {
+                echo 'Curl error: ' . curl_error($curl);
+            } else {
+                $result = json_decode($response, true);
+                if (isset($result['trackId'])) {
+                    header("Location: https://gateway.zibal.ir/start/" . $result['trackId']);
+                    exit;
+                } else {
+                    echo "Error: " . $result['message'];
+                }
+            }
+
+            curl_close($curl);
         }
     }
 
